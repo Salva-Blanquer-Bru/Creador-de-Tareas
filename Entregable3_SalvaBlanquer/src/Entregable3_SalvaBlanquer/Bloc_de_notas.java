@@ -52,13 +52,13 @@ public class Bloc_de_notas {
 
 			case 2:
 				System.out.println("tareas pendientes ");
-				System.out.println();
+				
 
 				break;
 
 			case 3:
 				System.out.println("tareas completadas ");
-				System.out.println();
+				
 
 				break;
 
