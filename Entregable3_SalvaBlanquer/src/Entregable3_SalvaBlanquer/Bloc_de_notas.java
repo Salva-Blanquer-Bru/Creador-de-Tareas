@@ -52,22 +52,28 @@ public class Bloc_de_notas {
 
 			case 2:
 				System.out.println("tareas pendientes ");
+				System.out.println();
+
 				break;
 
 			case 3:
 				System.out.println("tareas completadas ");
+				System.out.println();
+
 				break;
 
 			case 4:
 				System.out.println("Hasta Luego");
-				break;
+				repite = false;
+				
+				
 			}
 
 			try {
 				File myFile = new File("C:\\Users\\salva\\Desktop\\de salva\\Programas Camarafp\\Programas Eclipse\\Entregable3_Salva_Blanquer\\Entregable3\\Entregable3_SalvaBlanquer\\src\\Entregable3_SalvaBlanquer\\Tareas");
 
 						
-				PrintWriter pw = new PrintWriter(new FileWriter(myFile, true));
+				PrintWriter pw = new PrintWriter(new FileWriter(myFile, true)); //Escritura del documento
 				pw.println(teclado.nextLine() + hourdateFormat.format(date));
 				System.out.println("");
 				pw.close();
@@ -75,7 +81,6 @@ public class Bloc_de_notas {
 				Scanner doc = new Scanner(myFile);// Lectura del documento
 				while (doc.hasNextLine()) {
 					String Tareas = doc.nextLine();
-					System.out.println(Tareas);
 
 				}
 			} catch (Exception e) { // Control de excepciones
