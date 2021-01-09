@@ -27,7 +27,7 @@ public class Bloc_de_notas {
 
 		Scanner teclado = new Scanner(System.in);// transcibe lo que escribas en el teclado al terminal
 		
-		Tareas tareas1 = null;
+		Tareas tarea1 = null;
 		boolean repite;
 
 		while (repite = true) { 
@@ -46,22 +46,25 @@ public class Bloc_de_notas {
 			case 1:
 				System.out.println("titulo de la nueva tarea");
 				
-			 tareas1= CrearTarea();
+			 tarea1= CrearTarea();
 			 
 			 try {
 					File myFile = new File("src\\Entregable3_SalvaBlanquer\\Tareas");
 
 							
 					PrintWriter pw = new PrintWriter(new FileWriter(myFile, true)); //Escritura del documento
-					pw.println(tareas1);
+					pw.println(tarea1);
 					
 					pw.close();
+					
 			 } catch (Exception e) { // Control de excepciones
 					System.out.println("Revisa el codigo");
 					e.printStackTrace(); // imprime el error
-				}
+				
+			 
 				break;
 
+			 }
 			case 2:
 				System.out.println("tareas pendientes ");
 				
@@ -82,18 +85,13 @@ public class Bloc_de_notas {
 			}
 
 			try {
-				File myFile = new File("src\\Entregable3_SalvaBlanquer\\Tareas");
+				File myFile = new File("src\\Entregable3_SalvaBlanquer\\Tareas"); //Declaracion y ruta del documento
 
-						
-				PrintWriter pw = new PrintWriter(new FileWriter(myFile, true)); //Escritura del documento
-				pw.println(tareas1);
-				
-				pw.close();
-    
+			
 				Scanner doc = new Scanner(myFile);// Lectura del documento
 				while (doc.hasNextLine()) {
 					String Tareas = doc.nextLine();
-					System.out.println(Tareas);
+					System.out.println(Tareas.toString());
 					
 				}
 			} catch (Exception e) { // Control de excepciones
