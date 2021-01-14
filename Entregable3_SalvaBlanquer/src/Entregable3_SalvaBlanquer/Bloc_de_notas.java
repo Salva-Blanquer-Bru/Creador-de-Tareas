@@ -1,154 +1,124 @@
-/**
- * 
- */
 package Entregable3_SalvaBlanquer;
 
-import java.io.File;
-
-
-import java.io.FileNotFoundException;
+//Importacion de librerias necesarias 
+import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.Scanner;
-import Entregable3_SalvaBlanquer.*;
-
 /**
  * @author Salvador
- *
  */
 public class Bloc_de_notas {
+static Tareas[]ArrayTareas = new Tareas[10];
 
+static int autoincremental = 0;
+
+public static void main(String[] args) {
 	
-	public static void main(String[] args)  {
-
-		Scanner teclado = new Scanner(System.in);// transcibe lo que escribas en el teclado al terminal
-
-		Tareas tarea1;
-		boolean repite;
-		boolean TareasCompletadas = false;
-
-		while (repite = true) {
+	Scanner teclado = new Scanner(System.in);// transcibe lo que escribas en el teclado al terminal
+	boolean repite;
+	while (repite = true) { // Bucle para repetir el menu hasta que el usuario lo detenga
+		try {
 			System.out.println("");
 			System.out.println("Escoga una opcion ");
 			System.out.println("");
 			System.out.println("1. Escribir nuevas tareas");
-			System.out.println("2. Mirar tareas pendientes");
-			System.out.println("3. Mirar tareas completadas");
-			System.out.println("4. Completar tareas pendientes");
-			System.out.println("5. Salir");
+			System.out.println("2. Mirar tareas");
+			System.out.println("3. Completar tareas pendientes");
+			System.out.println("4. Salir");
 
 			int opcion = teclado.nextInt();
-
-			switch (opcion) {
+			switch (opcion) { // Declaracion de acciones en el menu
 
 			case 1: // Crear Tareas
 				System.out.println("titulo de la nueva tarea");
-
-				tarea1 = CrearTarea();
-
-				try {
-					File myFile = new File("src\\Entregable3_SalvaBlanquer\\Tareas");
-
-					PrintWriter pw = new PrintWriter(new FileWriter(myFile, true)); // Escritura del documento
-					pw.println(tarea1);
-
-					pw.close();
-
-				} catch (Exception e) { // Control de excepciones
-					System.out.println("Revisa el codigo");
-					e.printStackTrace(); // imprime el error
-
-					break;
-
-				}
-			case 2: // Tareas Pendientes
-
-				break;
-
-			case 3: // Tareas Completadas
-
-				break;
-
-			case 5: // Finalizar programa
-				System.out.println("Hasta Luego");
-				repite = false;
-				return;
-
-			case 4: // Completar Tareas
-
-				// String eleccion = teclado.nextLine();
-				System.out.println("¿Esta Completada? (SI/NO)");
-				String respuesta = teclado.next();
-
-				if (respuesta.equals("SI")) {
-					
-					try {
-						String myStr1 = "SI";
-					File myFile = new File("src\\Entregable3_SalvaBlanquer\\Tareas Completadas");
-
-					PrintWriter pw = new PrintWriter(new FileWriter(myFile, true)); // Escritura del documento
-					pw.println("Completada");
-					pw.close();
-						
-					} catch (Exception e) {
-						// TODO: handle exception
-					
-					
+				CrearTareas();
 				
-				}
-					
-				if (respuesta.equals("NO")) {
-					
-				try {
-					String myStr2 = "NO";
-					File myFile = new File("src\\Entregable3_SalvaBlanquer\\Tareas Pendientes");
-					
-					PrintWriter pw = new PrintWriter(new FileWriter(myFile, true)); // Escritura del documento
-					pw.println("Pendiente");
-					pw.close();
-					
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-					
-
-					
-				}
 				break;
+
+			case 2: // Ver las tareas pendientes
+				
+				LeerTareas();
+				break;
+
+			
+
+			case 3: // Completar Tareas
+
+				CompletarTareas();
+				
+				break;
+
+			case 4: // Finaliza el programa
+				System.out.println("Hasta Luego");
+				GuardarArchivo();
+				repite = false;
+				
+				return;
 			}
-
-			try {
-				File myFile = new File("src\\Entregable3_SalvaBlanquer\\Tareas Completadas"); // Declaracion y ruta del documento
-
-				Scanner doc = new Scanner(myFile);// Lectura del documento
-				while (doc.hasNextLine()) {
-					String Tareas = doc.nextLine();
-
-				}
-			} catch (Exception e) { // Control de excepciones
-				System.out.println("Revisa el codigo");
-				e.printStackTrace(); // imprime el error
-			}
-		}}
-
+		} catch (InputMismatchException e) { // Control de una excepcion en concreto
+			System.out.println("Escriba un caracter valido");
+			teclado.nextLine();
+		}
 	}
-
-
-
-public static Tareas CrearTarea() {
-	Scanner sc = new Scanner(System.in);
-	String Titulo = sc.nextLine();
-	boolean Estado = false;
-	Date fecha = new Date();
-	return new Tareas(Titulo,fecha,Estado);
-	
-	
-	
-	
 }
+				public static void LeerTareas() { //Lee y separa las tareas en pendientes y completadas
+			System.out.println("Tareas Pendientes");
+			for (int i = 0; i < autoincremental; i++) {
+				if (ArrayTareas[i].getEstado() == false) {
+					System.out.println(ArrayTareas[i]);
+				}
+			}
+			System.out.println("Tareas Completadas");
+			for (int i = 0; i < autoincremental; i++) {
+				if (ArrayTareas[i].getEstado() == true) {
+					System.out.println(ArrayTareas[i]);
+				}
+			}
+		
+		}
+		
+	public static void CrearTareas() { // Creacion de Tareas
+		
+		Scanner Teclado = new Scanner(System.in);
+		String tarea = Teclado.nextLine();
+		ArrayTareas[autoincremental++]= new Tareas(tarea, new Date(), false);
+		
+				
+				
+				
+	}
+	
+	public static void CompletarTareas() { // Cuando introducimos un titulo que es igual al titulo de una tarea, el estado de la tarea cambia a true
+		Scanner teclado = new Scanner(System.in);
+		System.out.println("¿QUE TAREA DESEAS COMPLETAR?");
+		String EscogerTarea = teclado.nextLine();
+	for (int i = 0; i < autoincremental; i++) {
+		if (ArrayTareas[i].getTitulo().equals(EscogerTarea)) {
+			ArrayTareas[i].setEstado(true);
+		}
+		
+	}
+		
+	}
+	
+	public static void GuardarArchivo() {// Al Finalizar el programa, las tareas creadas se pasan al documento de texto
+		try {
+			FileWriter doc = new FileWriter  ("src\\Entregable3_SalvaBlanquer\\Tareas");
+			PrintWriter pw = new PrintWriter (doc);
+			for (int i = 0; i < autoincremental; i++) {
+				String Guardado = ArrayTareas[i].getTitulo() + "_" + (ArrayTareas[i].getFechayHora()) + "_" + ArrayTareas[i].getEstado();
+				pw.println(Guardado);
+				
+			}
+			pw.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("No hay archivo");
+			e.printStackTrace();
+		}
+	}
 }
-
