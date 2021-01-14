@@ -110,7 +110,7 @@ public static void main(String[] args) {
 			FileWriter doc = new FileWriter  ("src\\Entregable3_SalvaBlanquer\\Tareas");
 			PrintWriter pw = new PrintWriter (doc);
 			for (int i = 0; i < autoincremental; i++) {
-				String Guardado = ArrayTareas[i].getTitulo() + "_" + (ArrayTareas[i].getFechayHora()) + "_" + ArrayTareas[i].getEstado();
+				String Guardado = ArrayTareas[i].getTitulo()+ ArrayTareas[i].getFechayHora()+ ArrayTareas[i].getEstado();
 				pw.println(Guardado);
 				
 			}

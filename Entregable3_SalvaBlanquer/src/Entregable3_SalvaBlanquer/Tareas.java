@@ -3,22 +3,14 @@
  */
 package Entregable3_SalvaBlanquer;
 import java.util.Date;
-/**
- * @author salva
- *
- */
+
 public class Tareas {
-
 	
-	public String toString (){
-        String Tarea = titulo;
-        return Tarea + Fecha;
-    }
 	
-	private String titulo;
-	private Date Fecha;
-	private boolean estado;
-
+	
+	private   Date FechayHora;
+	private  String Titulo;
+	private  boolean Estado;
 	
 	/**
 	 *  Creacion del metodo constructor Jugadores
@@ -26,17 +18,17 @@ public class Tareas {
 	 * @param Persona
 	 */
 	
-	public Tareas (String Titulo, Date fecha, boolean Estado){
+	public Tareas(String Titulo, Date fecha, boolean Estado){
 		  
-		this.titulo = Titulo;
-		this.Fecha  = fecha;
-		this.estado = Estado;
+		this.Titulo = Titulo;
+		this.Estado = Estado;
+		this.FechayHora = fecha;
 		
 	  }
 		
 	
-	  public String getTitulo() {
-		   return titulo; 
+	  public  String getTitulo() {
+		   return Titulo; 
 	   }
 	
 	  /**
@@ -44,8 +36,8 @@ public class Tareas {
 	   * @return
 	   */
 	  
-	  public Date getfecha() {
-		   return Fecha; 
+	  public  boolean getEstado() {
+		   return Estado; 
 	   }
 	  
 	  /**
@@ -53,18 +45,19 @@ public class Tareas {
 	   * @return
 	   */
 	  
-	  public boolean getEstado() {
-		   return estado; 
+	  public  Date getFechayHora() {
+		   return FechayHora; 
 	   }
 	  
 	  /**
 	   * Creacion del metodo getPersona  para utilizar el metodo privado Persona
 	   * @return
 	   */
-	
 	  
-	  public void setTitulo(String titulo) { 
-			this.titulo = titulo;          
+	 
+	  
+	  public void setTitulo(String Titulo) { 
+			this.Titulo = Titulo;          
 	   }	  
 	  
 	  /**
@@ -72,18 +65,22 @@ public class Tareas {
 	   * @return
 	   */
 	  
-	  public void setFecha(Date Fecha) { 
-			this.Fecha = Fecha;          
+	   public   void setEstado(boolean Estado) { 
+		this.Estado = Estado;          
 	   }
 	  
+	
 	  /**
 	   * Creacion del metodo setTurno  para modificar el metodo privado Turno
 	   * @return
 	   */
 	  
-	  public void setEstado(boolean Estado) { 
-			this.estado = Estado;          
-	   }
-}
 	 
-	
+	  public void setFechayHora(Date FechayHora) { 
+			this.FechayHora = FechayHora;          
+	   }
+	  public String toString() {
+		  return Titulo+" "+FechayHora+" "+Estado;
+	  }
+}
+
